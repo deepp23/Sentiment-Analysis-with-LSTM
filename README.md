@@ -109,8 +109,8 @@ encoded_input = torch.tensor(sentence_model.encode(input_text)).unsqueeze(0)
 encoded_input = encoded_input.to(device)  
 
 with torch.no_grad():  
-    model.eval()  # Set the model to evaluation mode
-    output = model(encoded_input)  # Pass input through the model
+    model.eval()  
+    output = model(encoded_input)  
 
 probabilities = torch.softmax(output, dim=1)
 
