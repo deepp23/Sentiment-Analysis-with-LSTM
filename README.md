@@ -103,22 +103,19 @@ print(f'Test Accuracy: {accuracy:.2f}%')
 ```
 We check the model performance by passing random input, which is also called inference.
 ```bash
-#inference
+
 input_text = "I'm very angry at you"
-encoded_input = torch.tensor(sentence_model.encode(input_text)).unsqueeze(0)  # Add batch dimension
-encoded_input = encoded_input.to(device)  # Move input to device if necessary
+encoded_input = torch.tensor(sentence_model.encode(input_text)).unsqueeze(0)  
+encoded_input = encoded_input.to(device)  
 
 with torch.no_grad():  
     model.eval()  # Set the model to evaluation mode
     output = model(encoded_input)  # Pass input through the model
 
-# Convert output to probabilities
 probabilities = torch.softmax(output, dim=1)
 
-# Get the predicted sentiment (assuming binary classification)
 predicted_sentiment = torch.argmax(probabilities, dim=1).item()
 
-# Print the predicted sentiment
 if predicted_sentiment == 1:
     print("Positive sentiment")
 else:
